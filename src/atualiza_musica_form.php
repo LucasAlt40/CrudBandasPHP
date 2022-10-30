@@ -34,7 +34,7 @@
       <?php
         foreach($lista_bandas as $bandas) :
       ?>  
-        <option value="<?=$bandas["NOME"]?>"><?=$bandas["NOME"]?></option>
+        <option <?php $selected = $bandas["NOME"] === $musica["BANDA"] ? "selected" : ""; echo $selected;  ?> value="<?=$bandas["NOME"]?>"><?=$bandas["NOME"]?></option>
       <?php
         endforeach
       ?>  
