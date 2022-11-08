@@ -6,9 +6,14 @@
     $ano = $_POST["ano_lancamento"];
     $album = $_POST["album"];
     $banda = $_POST["banda"];
+    if (array_key_exists("lancamento", $_POST)) {
+        $lancamento = 1;
+    } else {
+        $lancamento = 0;
+    }
 
     $dao = new MusicasDao();
-    $dao->inserirMusica($nome, $ano, $album, $banda);
+    $dao->inserirMusica($nome, $ano, $album, $banda, $lancamento);
 
     header("Location: ../lista_musicas.php");
 ?>

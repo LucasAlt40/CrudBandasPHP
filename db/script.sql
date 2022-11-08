@@ -20,49 +20,54 @@ CREATE TABLE musicas (
 
 CREATE PROCEDURE prc_list_all_bandas()
 BEGIN
-SELECT * FROM bandas;
+    SELECT * FROM bandas;
 end;
 
 CREATE PROCEDURE prc_insert_banda(in n varchar(55), in i varchar(255))
 BEGIN
-INSERT INTO bandas(nome, integrantes) values (n, i);
+    INSERT INTO bandas(nome, integrantes) values (n, i);
 end;
 
 
 CREATE PROCEDURE prc_deletar_musicas_por_banda(in n varchar(55))
 BEGIN
-DELETE FROM musicas WHERE banda = n;
+    DELETE FROM musicas WHERE banda = n;
 end;
 
 CREATE PROCEDURE prc_deletar_banda(in n varchar(55))
 BEGIN
-CALL prc_deletar_musicas_por_banda(n);
-DELETE FROM bandas WHERE nome=n;
+    CALL prc_deletar_musicas_por_banda(n);
+    DELETE FROM bandas WHERE nome=n;
 end;
 
 
 CREATE PROCEDURE prc_list_musica(in id int)
 BEGIN
-SELECT * FROM musicas WHERE id_musica = id;
+    SELECT * FROM musicas WHERE id_musica = id;
 end;
 
 CREATE PROCEDURE prc_list_all_musica()
 BEGIN
-SELECT * FROM musicas;
+    SELECT * FROM musicas;
 end;
 
 CREATE PROCEDURE prc_add_musica(
-    in nome varchar(55), in ano int(4), in album varchar(55), in banda varchar(55)
+    in n varchar(55), in a int(4), in alb varchar(55), in ban varchar(55), in lanc int
 )
 BEGIN
-INSERT INTO musicas (nome_musica, ano_lancamento, album, banda) VALUES (nome, ano, album, banda);
+    INSERT INTO musicas (nome_musica, ano_lancamento, album, banda, lancamento) VALUES (n, a, alb, ban, lanc);
 end;
 
 CREATE PROCEDURE prc_update_musica(
-    in nome varchar(55), in ano int(4), in album varchar(55), in banda varchar(55), in id int
+    in n varchar(55), in a int(4), in alb varchar(55), in ban varchar(55), in lanc int, in id int
 )
 BEGIN
-UPDATE musicas SET nome_musica=nome, ano_lancamento=ano, album=album, banda=banda WHERE id_musica = id;
+    UPDATE musicas SET nome_musica=n, ano_lancamento=a, album=alb, banda=ban, lancamento=lanc WHERE id_musica = id;
+end;
+
+CREATE PROCEDURE prc_deletar_musica(in id int)
+BEGIN
+    DELETE FROM musicas WHERE id_musica=id;
 end;
 
 

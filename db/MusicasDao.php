@@ -33,24 +33,25 @@
             }
         } 
 
-        public function atualizarMusica($nome, $ano, $album, $banda, $id) {
-            $sql = "CALL prc_update_musica(?, ?, ?, ?, ?)";
+        public function atualizarMusica($nome, $ano, $album, $banda, $lancamento, $id) {
+            $sql = "CALL prc_update_musica(?, ?, ?, ?, ?, ?)";
             try {
                 $stmt = $this->con->prepare($sql);
-                $stmt->execute([$nome, $ano, $album, $banda, $id]);
+                $stmt->execute([$nome, $ano, $album, $banda, $lancamento, $id]);
             } catch (PDOException $e) {
                 die("Não foi possivel atualizar a música." . $e->getMessage());
             }
         }
 
-        public function inserirMusica($nome, $ano, $album, $banda) {
-            $sql = "CALL prc_add_musica(?, ?, ?, ?)";
+        public function inserirMusica($nome, $ano, $album, $banda, $lancamento) {
+            $sql = "CALL prc_add_musica(?, ?, ?, ?, ?)";
             try {
                 $stmt = $this->con->prepare($sql);
                 $stmt->bindValue(1, $nome);
                 $stmt->bindValue(2, $ano);
                 $stmt->bindValue(3, $album);
                 $stmt->bindValue(4, $banda);
+                $stmt->bindValue(5, $lancamento);
                 $stmt->execute();
             } catch (PDOException $e) {
                 die("Não foi possivel adicionar a Musica. " . $e->getMessage());
@@ -58,7 +59,7 @@
         }
 
         public function deletarMusica($id) {
-            $sql = "DELETE FROM musicas WHERE id_musica=?";
+            $sql = "CALL prc_deletar_musica(?)";
             try {
               $stmt = $this->con->prepare($sql);
               $stmt->execute([$id]);
