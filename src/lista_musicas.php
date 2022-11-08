@@ -6,8 +6,8 @@
     $lista_musicas = $dao->listarMusicas();
 ?>
 
-    <table class="table table-striped mt-2 bg-light">
-        <thead class="table-success">
+    <table class="table table-striped mt-2 table-dark">
+        <thead class="table-primary">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
@@ -32,13 +32,13 @@
                     <td>
                         <form action="./musica/remove_musica.php" method="post">
                             <input type="hidden" name="id_musica" value="<?=$musica["id_musica"]?>">
-                            <button type="submit" class="btn btn-danger" id="btn-apagar">
+                            <button type="submit" class="btn btn-outline-danger" id="btn-apagar">
                                 Remover
                             </button>
                         </form>
                     </td>
                     <td>
-                        <a href="./atualiza_musica_form.php?id=<?= $musica["id_musica"] ?>" class="btn btn-primary" >Atualizar</a>
+                        <a href="./atualiza_musica_form.php?id=<?= $musica["id_musica"] ?>" class="btn btn-outline-primary" >Atualizar</a>
                     </td>
                 </tr>
             <?php

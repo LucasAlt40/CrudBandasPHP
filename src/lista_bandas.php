@@ -6,8 +6,8 @@
     $lista_bandas = $dao->listarBandas();
 ?>
 
-    <table class="table table-striped mt-2 bg-light">
-    <thead class="table-success">
+    <table class="table table-striped mt-2 table-dark">
+    <thead class="table-primary">
         <tr>
             <th scope="col">Nome</th>
             <th scope="col">Integrantes</th>
@@ -25,7 +25,7 @@
             <td>
                 <form action="./banda/remove_banda.php" method="post">
                     <input type="hidden" name="nome" value="<?= $banda["nome"] ?>">
-                    <button type="submit" class="btn btn-danger" id="btn-apagar">
+                    <button type="submit" class="btn btn-outline-danger" id="btn-apagar">
                         Remover
                     </button>
                 </form>
