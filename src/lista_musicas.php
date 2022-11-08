@@ -11,7 +11,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
-                <th scope="col">Ano</th>
+                <th scope="col">Ano de lançamento</th>
                 <th scope="col">Album</th>
                 <th scope="col">Banda</th>
                 <th></th>
@@ -23,9 +23,15 @@
             <?php
                 foreach ($lista_musicas as $musica) :
             ?>
+                <?php
+                    $lancamento = false;
+                    if($musica["lancamento"] == '1') {
+                        $lancamento = true;
+                    }
+                ?>
                 <tr>
                     <td><?= $musica["id_musica"] ?></td>
-                    <td><?= $musica["nome_musica"] ?></td>
+                    <td><?= $musica["nome_musica"] ?> <?=($lancamento) ? '<span class="badge bg-success">New</span>' : "" ?></td>
                     <td><?= $musica["ano_lancamento"] ?></td>
                     <td><?= $musica["album"] ?></td>
                     <td><?= $musica["banda"] ?></td>
