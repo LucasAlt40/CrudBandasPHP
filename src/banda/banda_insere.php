@@ -1,8 +1,8 @@
 <?php
     require_once("../../db/BandasDao.php");
 
-    $nome = $_POST["NOME"];
-    $integrantes = $_POST["INTEGRANTES"];
+    $nome = $_POST["nome"];
+    $integrantes = $_POST["integrantes"];
 
     $dao = new BandasDao();
     $dao->inserirBanda($nome, $integrantes);

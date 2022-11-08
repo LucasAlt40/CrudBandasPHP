@@ -3,7 +3,7 @@ class Conexao{
   private $servidor = "localhost";
   private $usuario = "root";
   private $senha = "";
-  private $banco = "ifsp";
+  private $banco = "musicfy";
 
 
   public function getConexao(){

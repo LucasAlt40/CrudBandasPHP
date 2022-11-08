@@ -1,10 +1,11 @@
 <?php
     require_once("../../db/MusicasDao.php");
 
-    $nome = $_POST["NOME"];
-    $ano = $_POST["ANO"];
-    $album = $_POST["ALBUM"];
-    $banda = $_POST["BANDA"];
+
+    $nome = $_POST["nome_musica"];
+    $ano = $_POST["ano_lancamento"];
+    $album = $_POST["album"];
+    $banda = $_POST["banda"];
 
     $dao = new MusicasDao();
     $dao->inserirMusica($nome, $ano, $album, $banda);

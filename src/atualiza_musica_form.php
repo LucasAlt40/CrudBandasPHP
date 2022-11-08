@@ -14,27 +14,27 @@
 ?>
 
 <h5 class="text-center">Atualizar Música</h5>
-<form action="musica_atualiza.php" method="post">
-  <input type="hidden" id="ID" name="ID" value="<?=$musica["ID"]?>">
+<form action="./musica/musica_atualiza.php" method="post">
+  <input type="hidden" id="id_musica" name="id_musica" value="<?=$musica["id_musica"]?>">
   <div class="form-group">
     <label for="NOME">Nome:</label> 
-    <input type="text" class="form-control" id="NOME" name="NOME" value="<?=$musica["NOME"]?>">
+    <input type="text" class="form-control" id="nome_musica" name="nome_musica" value="<?=$musica["nome_musica"]?>">
   </div>
   <div class="form-group">
     <label for="ANO">Ano:</label> 
-    <input type="number" class="form-control" id="ANO" name="ANO" maxLength="4" value="<?=$musica["ANO"]?>">
+    <input type="number" class="form-control" id="ano_lancamento" name="ano_lancamento" maxLength="4" value="<?=$musica["ano_lancamento"]?>">
   </div>         
   <div class="form-group">
     <label for="ALBUM">Album</label> 
-    <input type="text" class="form-control" id="ALBUM" name="ALBUM" value="<?=$musica["ALBUM"]?>">
+    <input type="text" class="form-control" id="album" name="album" value="<?=$musica["album"]?>">
   </div>
   <div class="form-group">
     <label for="BANDA">Banda</label> 
-    <select class="form-select" id="BANDA" name="BANDA" aria-label="Default select example">
+    <select class="form-select" id="banda" name="banda" aria-label="Default select example">
       <?php
         foreach($lista_bandas as $bandas) :
       ?>  
-        <option <?php $selected = $bandas["NOME"] === $musica["BANDA"] ? "selected" : ""; echo $selected;  ?> value="<?=$bandas["NOME"]?>"><?=$bandas["NOME"]?></option>
+        <option <?php $selected = $bandas["nome"] === $musica["banda"] ? "selected" : ""; echo $selected;  ?> value="<?=$bandas["nome"]?>"><?=$bandas["nome"]?></option>
       <?php
         endforeach
       ?>  

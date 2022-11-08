@@ -1,11 +1,11 @@
 <?php
     require_once("../../db/MusicasDao.php");
 
-    $nome = $_POST["NOME"];
-    $ano = $_POST["ANO"];
-    $album = $_POST["ALBUM"];
-    $banda = $_POST["BANDA"];
-    $id = $_POST["ID"];
+    $nome = $_POST["nome_musica"];
+    $ano = $_POST["ano_lancamento"];
+    $album = $_POST["album"];
+    $banda = $_POST["banda"];
+    $id = $_POST["id_musica"];
 
     $dao = new MusicasDao();
     $dao->atualizarMusica($nome, $ano, $album, $banda, $id);

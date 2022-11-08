@@ -7,26 +7,26 @@
 ?>
 
 <h5 class="text-center">Inserir Música</h5>
-<form action="./musica/musica_insere.php"  class="bg-light container" method="post">
+<form action="./musica/musica_insere.php"  class="text-bg-light container" method="post">
   <div class="form-group">
-    <label for="NOME">Nome:</label> 
-    <input type="text" class="form-control" id="NOME" name="NOME">
+    <label for="nome_musica">Nome:</label>
+    <input type="text" class="form-control" id="nome_musica" name="nome_musica">
   </div>
   <div class="form-group"> 
-    <label for="ANO">Ano:</label> 
-    <input type="number" class="form-control" id="ANO" name="ANO" maxLength="4">
+    <label for="ano_lancamento">Ano:</label>
+    <input type="number" class="form-control" id="ano_lancamento" name="ano_lancamento" maxLength="4">
   </div>         
   <div class="form-group"> 
-    <label for="ALBUM">Album</label> 
-    <input type="text" class="form-control" id="ALBUM" name="ALBUM">
+    <label for="album">Album</label>
+    <input type="text" class="form-control" id="album" name="album">
   </div>
   <div class="form-group"> 
-    <label for="BANDA">Banda</label> 
-    <select class="form-select" id="BANDA" name="BANDA" aria-label="Default select example">
+    <label for="banda">Banda</label>
+    <select class="form-select" id="banda" name="banda" aria-label="Default select example">
       <?php
         foreach($lista_bandas as $bandas) :
       ?>  
-        <option value="<?=$bandas["NOME"]?>"><?=$bandas["NOME"]?></option>
+        <option value="<?=$bandas["nome"]?>"><?=$bandas["nome"]?></option>
       <?php
         endforeach
       ?>  

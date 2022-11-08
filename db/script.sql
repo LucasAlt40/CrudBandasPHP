@@ -1,32 +1,82 @@
-USE ifsp;
+create database if not exists musicfy;
+use musicfy;
 
-CREATE TABLE BANDAS (
-    NOME VARCHAR(55) NOT NULL UNIQUE,
-    INTEGRANTES VARCHAR(255) NOT NULL,
-    PRIMARY KEY (NOME)
+CREATE TABLE bandas (
+                        nome VARCHAR(55) NOT NULL UNIQUE,
+                        integrantes VARCHAR(255) NOT NULL,
+                        PRIMARY KEY (nome)
 );
 
-CREATE TABLE MUSICAS (
-	ID INT AUTO_INCREMENT,
-    NOME VARCHAR(55) NOT NULL,
-    ANO INT(4) NOT NULL,
-    ALBUM VARCHAR(55),
-    BANDA VARCHAR(55),
-    PRIMARY KEY (ID),
-    FOREIGN KEY (BANDA) REFERENCES BANDAS(NOME)
+CREATE TABLE musicas (
+                         id_musica INT AUTO_INCREMENT,
+                         nome_musica VARCHAR(55) NOT NULL,
+                         ano_lancamento INT(4) NOT NULL,
+                         album VARCHAR(55),
+                         banda VARCHAR(55),
+                         lancamento boolean default true,
+                         PRIMARY KEY (id_musica),
+                         FOREIGN KEY (banda) REFERENCES bandas(nome)
 );
 
-INSERT INTO BANDAS VALUES 
-	('AC/DC', 'Brian Johnson, Angus Young, Bon Scott, Malcolm Young, Phill Rudd'),
-    ("Guns N' Roses", 'Axl Rose, Slash, Izzy Stradlin, Duf McKagan, Steven Adler'),
-    ('The Beatles', 'John Lennon, Paul McCartney, Ringo Starr, George Harrison'),
-    ('Måneskin', 'Damiano David, Victoria De Angelis, Ethan Torchio, Thomas Raggi');
+CREATE PROCEDURE prc_list_all_bandas()
+BEGIN
+SELECT * FROM bandas;
+end;
 
-INSERT INTO MUSICAS (NOME, ANO, ALBUM, BANDA) VALUES 
-	('Let It Be', 1970, 'Let It Be', 'The Beatles'),
-    ("Sweet Child O' Mine", 1987, 'Appetite for Destruction', "Guns N' Roses"),
-    ('I Wanna Be Your Slave', 2021, "Teatro d'ira: Vol. I", 'Måneskin'),
-    ('For Those About to Rock (We Salute You)', 1981, NULL, 'AC/DC'),
-    ('Hells Bells', 1980, 'Back in Black', 'AC/DC'),
-    ('Come Together', 1969, 'Abbey Road', 'The Beatles'),
-    ('Yellow Submarine', 1966, 'Revolver', 'The Beatles');
+CREATE PROCEDURE prc_insert_banda(in n varchar(55), in i varchar(255))
+BEGIN
+INSERT INTO bandas(nome, integrantes) values (n, i);
+end;
+
+
+CREATE PROCEDURE prc_deletar_musicas_por_banda(in n varchar(55))
+BEGIN
+DELETE FROM musicas WHERE banda = n;
+end;
+
+CREATE PROCEDURE prc_deletar_banda(in n varchar(55))
+BEGIN
+CALL prc_deletar_musicas_por_banda(n);
+DELETE FROM bandas WHERE nome=n;
+end;
+
+
+CREATE PROCEDURE prc_list_musica(in id int)
+BEGIN
+SELECT * FROM musicas WHERE id_musica = id;
+end;
+
+CREATE PROCEDURE prc_list_all_musica()
+BEGIN
+SELECT * FROM musicas;
+end;
+
+CREATE PROCEDURE prc_add_musica(
+    in nome varchar(55), in ano int(4), in album varchar(55), in banda varchar(55)
+)
+BEGIN
+INSERT INTO musicas (nome_musica, ano_lancamento, album, banda) VALUES (nome, ano, album, banda);
+end;
+
+CREATE PROCEDURE prc_update_musica(
+    in nome varchar(55), in ano int(4), in album varchar(55), in banda varchar(55), in id int
+)
+BEGIN
+UPDATE musicas SET nome_musica=nome, ano_lancamento=ano, album=album, banda=banda WHERE id_musica = id;
+end;
+
+
+INSERT INTO bandas VALUES
+                       ('AC/DC', 'Brian Johnson, Angus Young, Bon Scott, Malcolm Young, Phill Rudd'),
+                       ("Guns N' Roses", 'Axl Rose, Slash, Izzy Stradlin, Duf McKagan, Steven Adler'),
+                       ('The Beatles', 'John Lennon, Paul McCartney, Ringo Starr, George Harrison'),
+                       ('Coldplay', 'Chris Martin, Jonny Buckland, Guy Berryman, Will Champion');
+
+INSERT INTO musicas (nome_musica, ano_lancamento, album, banda) VALUES
+                                                                    ('Let It Be', 1970, 'Let It Be', 'The Beatles'),
+                                                                    ("Sweet Child O' Mine", 1987, 'Appetite for Destruction', "Guns N' Roses"),
+                                                                    ('Yellow', 2021, "Parachutes", 'Coldplay'),
+                                                                    ('For Those About to Rock (We Salute You)', 1981, NULL, 'AC/DC'),
+                                                                    ('Hells Bells', 1980, 'Back in Black', 'AC/DC'),
+                                                                    ('Come Together', 1969, 'Abbey Road', 'The Beatles'),
+                                                                    ('Yellow Submarine', 1966, 'Revolver', 'The Beatles');

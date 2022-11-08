@@ -24,38 +24,21 @@
                 foreach ($lista_musicas as $musica) :
             ?>
                 <tr>
-                    <td><?= $musica["ID"] ?></td>
-                    <td><?= $musica["NOME"] ?></td>
-                    <td><?= $musica["ANO"] ?></td>
-                    <td><?= $musica["ALBUM"] ?></td>
-                    <td><?= $musica["BANDA"] ?></td>
+                    <td><?= $musica["id_musica"] ?></td>
+                    <td><?= $musica["nome_musica"] ?></td>
+                    <td><?= $musica["ano_lancamento"] ?></td>
+                    <td><?= $musica["album"] ?></td>
+                    <td><?= $musica["banda"] ?></td>
                     <td>
                         <form action="./musica/remove_musica.php" method="post">
-                            <input type="hidden" name="ID" value="<?=$musica["ID"]?>">
-                            <button type="button" class="btn btn-danger" id="btn-apagar" data-toggle="modal" data-target="#exampleModalCenter" >Remover</button>
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Remover Música</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Tem certeza que deseja apagar essa Música?.
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                        <button type="submit" class="btn btn-danger">Apagar</button>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <input type="hidden" name="id_musica" value="<?=$musica["id_musica"]?>">
+                            <button type="submit" class="btn btn-danger" id="btn-apagar">
+                                Remover
+                            </button>
                         </form>
                     </td>
                     <td>
-                        <a href="./atualiza_musica_form.php?id=<?= $musica["ID"] ?>" class="btn btn-primary" >Atualizar</a>
+                        <a href="./atualiza_musica_form.php?id=<?= $musica["id_musica"] ?>" class="btn btn-primary" >Atualizar</a>
                     </td>
                 </tr>
             <?php
@@ -64,6 +47,20 @@
 
         </tbody>
     </table>
+    
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">Aviso de exclusão</strong>
+                <small>Agora</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Música apagada com sucesso.
+            </div>
+        </div>
+    </div>
 
 <?php
   include("../include/rodape.php");

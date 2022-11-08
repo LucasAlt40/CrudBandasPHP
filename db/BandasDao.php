@@ -10,7 +10,7 @@
         }
 
         public function listarBandas() {
-            $sql = "SELECT * FROM BANDAS";
+            $sql = "CALL prc_list_all_bandas()";
             try {
                 $stmt = $this->con->query($sql);
                 $Bandas = $stmt->fetchAll();
@@ -21,7 +21,7 @@
         }
 
         public function inserirBanda($nome, $integrantes) {
-            $sql = "INSERT INTO BANDAS VALUES (?, ?)";
+            $sql = "CALL prc_insert_banda(?,?)";
             try {
                 $stmt = $this->con->prepare($sql);
                 $stmt->bindValue(1, $nome);
@@ -33,8 +33,8 @@
         }
 
         public function deletarBanda($nome) {
-            $sql = "DELETE FROM BANDAS WHERE NOME=?";
-            $sqlDeletarMusicas = "DELETE FROM MUSICAS WHERE BANDA=?";
+            $sql = "CALL prc_deletar_banda(?)";
+            $sqlDeletarMusicas = "CALL prc_deletar_musicas_por_banda(?)";
             try {
                 $stmt = $this->con->prepare($sqlDeletarMusicas);
                 $stmt->execute([$nome]);
