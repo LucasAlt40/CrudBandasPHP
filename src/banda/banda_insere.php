@@ -7,5 +7,5 @@
     $dao = new BandasDao();
     $dao->inserirBanda($nome, $integrantes);
 
-    header("Location: ../lista_bandas.php");
+    header("Location: ../admin/lista_bandas.php");
 ?>

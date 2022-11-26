@@ -6,5 +6,5 @@
     $dao = new BandasDao();
     $dao->deletarBanda($nome);
 
-    header("Location: ../lista_bandas.php");
+    header("Location: ../admin/lista_bandas.php");
 ?>

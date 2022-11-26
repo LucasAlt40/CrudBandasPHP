@@ -10,7 +10,7 @@
         }
 
         public function listarBandas() {
-            $sql = "CALL prc_list_all_bandas()";
+            $sql = "SELECT * FROM bandas";
             try {
                 $stmt = $this->con->query($sql);
                 $Bandas = $stmt->fetchAll();
@@ -21,20 +21,21 @@
         }
 
         public function inserirBanda($nome, $integrantes) {
-            $sql = "CALL prc_insert_banda(?,?)";
+            $sql = "INSERT INTO bandas (nome, integrantes) VALUES (?, ?)";
             try {
                 $stmt = $this->con->prepare($sql);
                 $stmt->bindValue(1, $nome);
                 $stmt->bindValue(2, $integrantes);
                 $stmt->execute();
+                $_SESSION["msg"] = "A banda {$nome} foi adicionada com sucesso!";
             } catch (PDOException $e) {
                 die("Não foi possivel adicionar a Banda. " . $e->getMessage());
             }
         }
 
         public function deletarBanda($nome) {
-            $sql = "CALL prc_deletar_banda(?)";
-            $sqlDeletarMusicas = "CALL prc_deletar_musicas_por_banda(?)";
+            $sql = "DELETE FROM bandas WHERE nome=?";
+            $sqlDeletarMusicas = "DELETE FROM musicas WHERE banda=?";
             try {
                 $stmt = $this->con->prepare($sqlDeletarMusicas);
                 $stmt->execute([$nome]);
@@ -45,6 +46,7 @@
             try {
                 $stmt = $this->con->prepare($sql);
                 $stmt->execute([$nome]);
+                $_SESSION["msg"] = "A banda {$nome} foi apagada com sucesso!";
             } catch (PDOException $e) {
                 die("A banda {$nome} não foi apagado! " . $e->getMessage());
             }

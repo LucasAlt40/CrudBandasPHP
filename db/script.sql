@@ -18,57 +18,36 @@ CREATE TABLE musicas (
                          FOREIGN KEY (banda) REFERENCES bandas(nome)
 );
 
-CREATE PROCEDURE prc_list_all_bandas()
-BEGIN
-    SELECT * FROM bandas;
-end;
-
-CREATE PROCEDURE prc_insert_banda(in n varchar(55), in i varchar(255))
-BEGIN
-    INSERT INTO bandas(nome, integrantes) values (n, i);
-end;
-
-
-CREATE PROCEDURE prc_deletar_musicas_por_banda(in n varchar(55))
-BEGIN
-    DELETE FROM musicas WHERE banda = n;
-end;
-
-CREATE PROCEDURE prc_deletar_banda(in n varchar(55))
-BEGIN
-    CALL prc_deletar_musicas_por_banda(n);
-    DELETE FROM bandas WHERE nome=n;
-end;
+CREATE TABLE Usuario (
+  nome VARCHAR(55) not null,
+  sobrenome VARCHAR(55) not null,
+  cpf VARCHAR(14),
+  tipo_usuario tinyint default 1,
+  email VARCHAR(60) UNIQUE NOT NULL,
+  senha VARCHAR(40) NOT NULL,
+  PRIMARY KEY (cpf)
+);
 
 
-CREATE PROCEDURE prc_list_musica(in id int)
-BEGIN
-    SELECT * FROM musicas WHERE id_musica = id;
-end;
+CREATE TABLE playlist (
+    id_playlist int AUTO_INCREMENT PRIMARY KEY,
+    cpf_usuario VARCHAR(14) not null,
+    FOREIGN key (cpf_usuario) REFERENCES Usuario(cpf)
+);
 
-CREATE PROCEDURE prc_list_all_musica()
-BEGIN
-    SELECT * FROM musicas;
-end;
+CREATE TABLE playlist_musicas (
+    cod_playlist int not null,
+    cod_musica int not null,
+    FOREIGN KEY (cod_musica) REFERENCES musicas(id_musica),
+    FOREIGN KEY (cod_playlist) REFERENCES playlist(id_playlist),
+    PRIMARY KEY (cod_playlist, cod_musica)
+);
 
-CREATE PROCEDURE prc_add_musica(
-    in n varchar(55), in a int(4), in alb varchar(55), in ban varchar(55), in lanc int
-)
-BEGIN
-    INSERT INTO musicas (nome_musica, ano_lancamento, album, banda, lancamento) VALUES (n, a, alb, ban, lanc);
-end;
 
-CREATE PROCEDURE prc_update_musica(
-    in n varchar(55), in a int(4), in alb varchar(55), in ban varchar(55), in lanc int, in id int
-)
-BEGIN
-    UPDATE musicas SET nome_musica=n, ano_lancamento=a, album=alb, banda=ban, lancamento=lanc WHERE id_musica = id;
-end;
-
-CREATE PROCEDURE prc_deletar_musica(in id int)
-BEGIN
-    DELETE FROM musicas WHERE id_musica=id;
-end;
+INSERT INTO 
+  Usuario (nome, sobrenome, cpf, tipo_usuario, email, senha)
+VALUES
+  ("Lucas", "Theodoro", "11111111111", 2, "lucas@email.com", "23A6A3CF06CFD8B1A6CDA468E5756A6A6A1D21E7");
 
 
 INSERT INTO bandas VALUES

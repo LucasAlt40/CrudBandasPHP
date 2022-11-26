@@ -30,19 +30,19 @@ if (!isset($_SESSION["usuario_logado"])) {
               if($_SESSION["usuario_logado"]["tipo_usuario"] == 2) {
                 ?>
                 <li class="nav-item">
-                  <a class="nav-link" href="../src/admin/lista_musicas.php">Listar Músicas</a>
+                  <a class="nav-link" href="lista_musicas.php">Listar Músicas</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="../src/admin/lista_bandas.php">Listar Bandas</a>
+                  <a class="nav-link" href="lista_bandas.php">Listar Bandas</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="../src/admin/musica_formulario.php">Adicionar Músicas</a>
+                  <a class="nav-link" href="musica_formulario.php">Adicionar Músicas</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="../src/admin/banda_formulario.php">Adicionar Bandas</a>
+                  <a class="nav-link" href="banda_formulario.php">Adicionar Bandas</a>
                 </li>
                 <li>
-                  <a href="../src/login/logout.php">
+                  <a href="../login/logout.php">
                     <button class="btn btn-outline-danger"> SAIR </button>
                   </a>
                 </li>
@@ -50,13 +50,13 @@ if (!isset($_SESSION["usuario_logado"])) {
               } else {
                 ?>
                 <li class="nav-item">
-                  <a class="nav-link" href="../src/pages/playlist.php">Playlist</a>
+                  <a class="nav-link" href="playlist.php">Playlist</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="../src/pages/listar_musicas.php">Músicas</a>
+                  <a class="nav-link" href="listar_musicas.php">Músicas</a>
                 </li>
                 <li>
-                  <a href="../src/login/logout.php">
+                  <a href="../login/logout.php">
                     <button class="btn btn-outline-danger"> SAIR </button>
                   </a>
                 </li>

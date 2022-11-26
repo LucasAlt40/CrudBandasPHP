@@ -1,8 +1,8 @@
 <?php
-    require_once("../db/BandasDao.php");
-    include("../include/cabecalho.php");
+    require_once("../../db/BandasDao.php");
+    include("../../include/cabecalhoPaginas.php");
 
-    include("../util/mensagem.php");
+    include("../../util/mensagem.php");
     exibirMsg();
 
     $dao = new BandasDao();
@@ -26,7 +26,7 @@
             <td><?= $banda["nome"] ?></td>
             <td><?= $banda["integrantes"] ?></td>
             <td>
-                <form action="./banda/remove_banda.php" method="post">
+                <form action="../banda/remove_banda.php" method="post">
                     <input type="hidden" name="nome" value="<?= $banda["nome"] ?>">
                     <button type="submit" class="btn btn-outline-danger" id="btn-apagar">
                         Remover
@@ -42,5 +42,5 @@
     </table>
 
 <?php
-  include("../include/rodape.php");
+  include("../../include/rodape.php");
 ?>

@@ -13,7 +13,7 @@
     }
 
     $dao = new MusicasDao();
-    $dao->atualizarMusica($nome, $ano, $album, $banda,  $lancamento, $id);
+    $dao->atualizarMusica($nome, $ano, $album, $banda, $lancamento, $id);
 
-    header("Location: ../lista_musicas.php");
+    header("Location: ../admin/lista_musicas.php");
 ?>

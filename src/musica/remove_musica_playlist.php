@@ -4,7 +4,7 @@
     $id = $_POST["id_musica"];
 
     $dao = new MusicasDao();
-    $dao->deletarMusica($id);
+    $dao->deletarMusicaPlaylist($id);
 
-    header("Location: ../admin/lista_musicas.php");
+    header("Location: ../pages/playlist.php");
 ?>

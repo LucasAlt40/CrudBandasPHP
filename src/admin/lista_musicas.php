@@ -1,8 +1,8 @@
 <?php
-    require_once("../db/MusicasDao.php");
-    include("../include/cabecalho.php");
+    require_once("../../db/MusicasDao.php");
+    include("../../include/cabecalhoPaginas.php");
 
-    include("../util/mensagem.php");
+    include("../../util/mensagem.php");
     exibirMsg();
 
     $dao = new MusicasDao();
@@ -39,7 +39,7 @@
                     <td><?= $musica["album"] ?></td>
                     <td><?= $musica["banda"] ?></td>
                     <td>
-                        <form action="./musica/remove_musica.php" method="post">
+                        <form action="../musica/remove_musica.php" method="post">
                             <input type="hidden" name="id_musica" value="<?=$musica["id_musica"]?>">
                             <button type="submit" class="btn btn-outline-danger" id="btn-apagar">
                                 Remover
@@ -56,21 +56,7 @@
 
         </tbody>
     </table>
-    
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="..." class="rounded me-2" alt="...">
-                <strong class="me-auto">Aviso de exclusão</strong>
-                <small>Agora</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                Música apagada com sucesso.
-            </div>
-        </div>
-    </div>
 
 <?php
-  include("../include/rodape.php");
+  include("../../include/rodape.php");
 ?>

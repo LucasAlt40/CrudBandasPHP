@@ -15,5 +15,5 @@
     $dao = new MusicasDao();
     $dao->inserirMusica($nome, $ano, $album, $banda, $lancamento);
 
-    header("Location: ../lista_musicas.php");
+    header("Location: ../admin/lista_musicas.php");
 ?>
