@@ -1,5 +1,8 @@
 <?php
   include("../../include/cabecalhoPaginas.php");
+  if($_SESSION["usuario_logado"]["tipo_usuario"] != 2) {
+    header("Location: ../../public/index.php");
+}
 ?>
 
 <h5 class="text-center">Inserir Banda</h5>

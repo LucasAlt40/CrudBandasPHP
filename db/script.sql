@@ -40,7 +40,7 @@ CREATE TABLE playlist_musicas (
     cod_musica int not null,
     FOREIGN KEY (cod_musica) REFERENCES musicas(id_musica),
     FOREIGN KEY (cod_playlist) REFERENCES playlist(id_playlist),
-    PRIMARY KEY (cod_playlist, cod_musica)
+    PRIMARY KEY (cod_playlist)
 );
 
 

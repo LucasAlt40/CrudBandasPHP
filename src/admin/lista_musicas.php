@@ -2,6 +2,10 @@
     require_once("../../db/MusicasDao.php");
     include("../../include/cabecalhoPaginas.php");
 
+    if($_SESSION["usuario_logado"]["tipo_usuario"] != 2) {
+        header("Location: ../../public/index.php");
+    }
+
     include("../../util/mensagem.php");
     exibirMsg();
 
