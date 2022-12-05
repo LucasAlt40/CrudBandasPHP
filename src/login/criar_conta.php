@@ -9,7 +9,7 @@ $email = $_POST["email"];
 $senha = $_POST["senha"];
 
 $dao = new UsuarioDao();
-$usuario = $dao->adicionarUsuario($nome, $sobrenome, $cpf, $email, sha1($senha));
+$dao->adicionarUsuario($nome, $sobrenome, $cpf, $email, sha1($senha));
 
 header("Location: ../form_login.php");
 ?>
