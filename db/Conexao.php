@@ -2,7 +2,7 @@
 class Conexao{
   private $servidor = "localhost";
   private $usuario = "root";
-  private $senha = "";
+  private $senha = "root";
   private $banco = "musicfy";
 
 

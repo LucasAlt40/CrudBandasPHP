@@ -60,7 +60,6 @@
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
     }
-    
   </style>
 
   <link href="login.css" rel="stylesheet">
@@ -70,7 +69,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="../../public/index.php">Musicfy</a>
+        <a class="navbar-brand" href="../public/index.php">Musicfy</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -79,21 +78,40 @@
     </nav>
   </header>
   <main class="form-signin w-100 m-auto">
-    <form action="./login/valida_login.php" method="POST">
+    <form>
       <h1 class="h3 mb-3 fw-normal" style="color: white;">Login</h1>
 
       <div class="form-floating" style="margin: 1rem 0;">
         <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
         <label for="floatingInput">Endereço de email</label>
       </div>
-      <div class="form-floating"  style="margin: 1rem 0;">
+      <div class="form-floating" style="margin: 1rem 0;">
         <input type="password" class="form-control" id="floatingPassword" name="senha" placeholder="Password">
         <label for="floatingPassword">Senha</label>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
-      <a href="./form_criar_conta.php"><p class="mt-5 mb-3 text-primary">Criar Conta</p></a>
+      <button class="w-100 btn btn-lg btn-primary" id="btn_enviar" type="button">Entrar</button>
+      <a href="./form_criar_conta.php">
+        <p class="mt-5 mb-3 text-primary">Criar Conta</p>
+      </a>
     </form>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="me-auto">Erro ao logar!</strong>
+          <small>Agora</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body text-bg-danger ">
+          <div class="alert alert-danger" role="alert">
+            Usuário ou senha incorretos! Tente novamente.
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
+
+
   <?php
   include("../include/rodape.php");
   ?>
+  <script src="javascript/index.js"></script>

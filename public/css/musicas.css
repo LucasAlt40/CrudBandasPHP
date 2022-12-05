@@ -1,0 +1,21 @@
+.lista-musicas {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.lista-musicas .card {
+  margin: 1rem;
+  transition: 0.3s;
+  transform-style: preserve-3d;
+}
+
+.lista-musicas .card img {
+  width: 100%;
+  height: 286px;
+}
+
+.lista-musicas .card:hover {
+  transform: scale(1.3) translateX(2%) translateY(3%) rotateZ(3deg);
+  z-index: 1100;
+  box-shadow: 10px 10px 60px -5px rgb(0 0 0 / 75%);
+}

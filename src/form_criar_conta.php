@@ -70,7 +70,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="../../public/index.php">Musicfy</a>
+        <a class="navbar-brand" href="../public/index.php">Musicfy</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -83,20 +83,20 @@
       <h1 class="h3 mb-3 fw-normal" style="color: white;">Cadastro</h1>
 
       <div class="form-floating" style="margin: 1rem 0;">
-        <input type="text" class="form-control" id="floatingInput" name="nome" placeholder="nome">
-        <label for="floatingInput">Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome" placeholder="nome">
+        <label for="nome">Nome</label>
       </div>
       <div class="form-floating" style="margin: 1rem 0;">
-        <input type="text" class="form-control" id="floatingInput" name="sobrenome" placeholder="sobrenome">
-        <label for="floatingInput">Sobrenome</label>
+        <input type="text" class="form-control" id="sobrenome" name="sobrenome" placeholder="sobrenome">
+        <label for="sobrenome">Sobrenome</label>
       </div>
       <div class="form-floating" style="margin: 1rem 0;">
-        <input type="text" class="form-control" id="floatingInput" name="cpf" placeholder="11111111111">
-        <label for="floatingInput">CPF (sem hífen)</label>
+        <input type="text" class="form-control" id="cpf" name="cpf" placeholder="11111111111">
+        <label for="cpf">CPF (sem hífen)</label>
       </div>
       <div class="form-floating" style="margin: 1rem 0;">
-        <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
-        <label for="floatingInput">Endereço de email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+        <label for="email">Endereço de email</label>
       </div>
       <div class="form-floating"  style="margin: 1rem 0;">
         <input type="password" class="form-control" id="floatingPassword" name="senha" placeholder="Password">

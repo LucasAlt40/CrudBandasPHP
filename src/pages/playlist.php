@@ -1,59 +1,42 @@
 <?php
-    require_once("../../db/MusicasDao.php");
-    include("../../include/cabecalhoPaginas.php");
-    include("../log.php");
+require_once("../../db/MusicasDao.php");
+include("../../include/cabecalhoPaginas.php");
+include("../log.php");
 
 
-    $dao = new MusicasDao();
-    $lista_musicas = $dao->listar_playlist($_SESSION["usuario_logado"]["cpf"]);
+$dao = new MusicasDao();
+$lista_musicas = $dao->listar_playlist($_SESSION["usuario_logado"]["cpf"]);
 ?>
 
-    <table class="table table-striped mt-2 table-dark">
-        <thead class="table-primary">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Ano de lançamento</th>
-                <th scope="col">Album</th>
-                <th scope="col">Banda</th>
+<div class="lista-musicas text-bg-dark">
 
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
+    <?php
+foreach ($lista_musicas as $musica):
+?>
+    <div class="card text-bg-dark" style="width: 18rem;">
+        <img src="../uploads/<?= $musica["nome_arquivo"] ?>" class="card-img-top" alt="capa">
+        <div class="card-body">
+            <h5 class="card-title">
+                <?= $musica["nome_musica"] ?>
+            </h5>
+            <p class="card-text">
+                Album: <?= $musica["album"] ?> <br>
+                    Ano de lançamento: <?= $musica["ano_lancamento"] ?> <br>
+                        Banda: <?= $musica["banda"] ?>
+            </p>
+            <form action="../musica/remove_musica_playlist.php" method="post">
+                <input type="hidden" name="id_musica" value="<?= $musica["id_musica"] ?>">
+                <button type="submit" class="btn btn-outline-danger" id="btn-apagar">
+                    Remover
+                </button>
+            </form>
+        </div>
+    </div>
+    <?php
+endforeach ?>
+</div>
 
-            <?php
-                foreach ($lista_musicas as $musica) :
-            ?>
-                <?php
-                    $lancamento = false;
-                    if($musica["lancamento"] == '1') {
-                        $lancamento = true;
-                    }
-                ?>
-                <tr>
-                    <td><?= $musica["id_musica"] ?></td>
-                    <td><?= $musica["nome_musica"] ?> <?=($lancamento) ? '<span class="badge bg-success">New</span>' : "" ?></td>
-                    <td><?= $musica["ano_lancamento"] ?></td>
-                    <td><?= $musica["album"] ?></td>
-                    <td><?= $musica["banda"] ?></td>
-
-                    <td>
-                        <form action="../musica/remove_musica_playlist.php" method="post">
-                            <input type="hidden" name="id_musica" value="<?=$musica["id_musica"]?>">
-                            <button type="submit" class="btn btn-outline-danger" id="btn-apagar">
-                                Remover
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            <?php
-                endforeach
-            ?>
-
-        </tbody>
-    </table>
 
 <?php
-  include("../../include/rodape.php");
+include("../../include/rodape.php");
 ?>
