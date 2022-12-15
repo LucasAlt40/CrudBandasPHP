@@ -1,7 +1,6 @@
 <?php
 require_once("../../db/MusicasDao.php");
 include("../../include/cabecalhoPaginas.php");
-include("../log.php");
 
 
 $dao = new MusicasDao();

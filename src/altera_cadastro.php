@@ -1,3 +1,10 @@
+<?php
+session_start();
+require_once("../db/UsuarioDao.php");
+$dao = new UsuarioDao();
+$dados_usuario = $dao->buscaEmail($_SESSION["usuario_logado"]["email"]);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -78,22 +85,54 @@
     </nav>
   </header>
   <main class="form-signin w-100 m-auto">
-    <form>
-      <h1 class="h3 mb-3 fw-normal" style="color: white;">Login</h1>
+    <form class="needs-validation">
+      <h1 class="h3 mb-3 fw-normal" style="color: white;">Cadastro</h1>
 
       <div class="form-floating" style="margin: 1rem 0;">
-        <input required type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
-        <label for="floatingInput">Endereço de email</label>
+        <input required type="text" class="form-control" value="<?= $dados_usuario["nome"] ?>" id="nome" name="nome"
+          placeholder="nome">
+        <label for="nome">Nome</label>
+        <div class="invalid-feedback">
+          Por favor preencha esse campo.
+        </div>
       </div>
       <div class="form-floating" style="margin: 1rem 0;">
-        <input required type="password" class="form-control" id="floatingPassword" name="senha" placeholder="Password">
-        <label for="floatingPassword">Senha</label>
+        <input required type="text" class="form-control" id="sobrenome" value="<?= $dados_usuario["sobrenome"] ?>"
+          name="sobrenome" placeholder="sobrenome">
+        <label for="sobrenome">Sobrenome</label>
+        <div class="invalid-feedback">
+          Por favor preencha esse campo.
+        </div>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" id="btn_enviar" type="button">Entrar</button>
-      <a href="./form_criar_conta.php">
-        <p class="mt-5 mb-3 text-primary">Criar Conta</p>
-      </a>
+      <div class="form-floating" style="margin: 1rem 0;">
+        <input required type="text" class="form-control" id="cpf" disabled value="<?= $dados_usuario["cpf"] ?>"
+          name="cpf" maxlength="11" placeholder="11111111111">
+        <label for="cpf">CPF (sem hífen)</label>
+      </div>
+      <div class="form-floating" style="margin: 1rem 0;">
+        <input required type="email" class="form-control" id="email" value="<?= $dados_usuario["email"] ?>" name="email"
+          placeholder="name@example.com">
+        <label for="email">Endereço de email</label>
+        <div class="invalid-feedback">
+          Por favor preencha esse campo.
+        </div>
+      </div>
+      <div class="form-floating" style="margin: 1rem 0;">
+        <input required minlength="4" type="password" value="" class="form-control"
+          id="senha" name="senha" placeholder="Password">
+        <label for="senha">Senha</label>
+        <div class="invalid-feedback">
+          Por favor preencha esse campo.
+        </div>
+        <div id="senha-invalida" style="display: none;">
+          <div class="alert alert-danger">
+            A senha deve conter no mínimo 4 caracteres.
+          </div>
+        </div>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary btn-submit" type="button">Cadastrar</button>
     </form>
+
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
       <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
@@ -102,30 +141,13 @@
           <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body text-bg-danger ">
-          <div class="alert alert-danger" role="alert">
-            Usuário ou senha incorretos! Tente novamente.
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-      <div id="liveToastSuccess" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-          <strong class="me-auto">Sucesso!</strong>
-          <small>Agora</small>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body text-bg-success ">
-          <div class="alert alert-success" role="alert">
-            Usuário criado com sucesso!
+          <div class="alert alert-req alert-danger" role="alert">
           </div>
         </div>
       </div>
     </div>
   </main>
-
-
   <?php
   include("../include/rodape.php");
   ?>
-  <script src="javascript/index.js"></script>
+  <script src="./javascript/validaFormAlteracao.js"></script>

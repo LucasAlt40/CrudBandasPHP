@@ -6,9 +6,6 @@
         header("Location: ../../public/index.php");
     }
 
-    include("../../util/mensagem.php");
-    exibirMsg();
-
     $dao = new MusicasDao();
     $lista_musicas = $dao->listarMusicas();
 ?>

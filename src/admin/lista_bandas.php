@@ -5,10 +5,6 @@
     if($_SESSION["usuario_logado"]["tipo_usuario"] != 2) {
         header("Location: ../../public/index.php");
     }
-
-    include("../../util/mensagem.php");
-    exibirMsg();
-
     $dao = new BandasDao();
     $lista_bandas = $dao->listarBandas();
 ?>

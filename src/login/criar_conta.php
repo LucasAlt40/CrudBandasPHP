@@ -1,5 +1,4 @@
 <?php
-include("../log.php");
 require_once("../../db/UsuarioDao.php");
 
 $nome = $_POST["nome"];
@@ -9,7 +8,16 @@ $email = $_POST["email"];
 $senha = $_POST["senha"];
 
 $dao = new UsuarioDao();
-$dao->adicionarUsuario($nome, $sobrenome, $cpf, $email, sha1($senha));
+$dados_consulta = $dao->buscaEmail($email);
 
-header("Location: ../form_login.php");
+$usuario = $dados_consulta;
+
+if (!$usuario) {
+  $dao->adicionarUsuario($nome, $sobrenome, $cpf, $email, sha1($senha));
+  $saida = ["msg" => "Usuário cadastrado", "status" => true];
+} else {
+  $saida = ["msg" => "Já existe um usuário com esse email.", "status" => false];
+}
+
+echo json_encode($saida);
 ?>

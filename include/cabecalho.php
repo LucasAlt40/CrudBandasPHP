@@ -73,6 +73,10 @@ if (!isset($_SESSION["usuario_logado"])) {
       margin: 1rem;
       color: white;
     }
+    
+    .buttons-user a {
+      margin: 0 1rem;
+    }
   </style>
 </head>
 
@@ -120,9 +124,14 @@ if (!isset($_SESSION["usuario_logado"])) {
                 <?= $_SESSION["usuario_logado"]["nome"] ?>
               </span> !</h5>
           </div>
-          <a style="text-decoration: none;" class="d-flex" href="../src/login/logout.php">
-            <button class="btn btn-outline-danger"> SAIR </button>
-          </a>
+          <div class="d-flex buttons-user">
+            <a style="text-decoration: none;" class="d-flex" href="../src/altera_cadastro.php">
+              <button class="btn btn-outline-primary"> CONTA </button>
+            </a>
+            <a style="text-decoration: none;" class="d-flex" href="../src/login/logout.php">
+              <button class="btn btn-outline-danger"> SAIR </button>
+            </a>
+          </div>
         </div>
       </div>
     </nav>

@@ -60,7 +60,6 @@
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
     }
-    
   </style>
 
   <link href="login.css" rel="stylesheet">
@@ -79,32 +78,68 @@
     </nav>
   </header>
   <main class="form-signin w-100 m-auto">
-    <form action="./login/criar_conta.php" method="POST">
+    <form class="needs-validation ">
       <h1 class="h3 mb-3 fw-normal" style="color: white;">Cadastro</h1>
 
       <div class="form-floating" style="margin: 1rem 0;">
-        <input type="text" class="form-control" id="nome" name="nome" placeholder="nome">
+        <input required type="text" class="form-control" id="nome" name="nome" placeholder="nome">
         <label for="nome">Nome</label>
+        <div class="invalid-feedback">
+          Por favor preencha esse campo.
+        </div>
       </div>
       <div class="form-floating" style="margin: 1rem 0;">
-        <input type="text" class="form-control" id="sobrenome" name="sobrenome" placeholder="sobrenome">
+        <input required type="text" class="form-control" id="sobrenome" name="sobrenome" placeholder="sobrenome">
         <label for="sobrenome">Sobrenome</label>
+        <div class="invalid-feedback">
+          Por favor preencha esse campo.
+        </div>
       </div>
       <div class="form-floating" style="margin: 1rem 0;">
-        <input type="text" class="form-control" id="cpf" name="cpf" placeholder="11111111111">
+        <input required type="text" class="form-control" id="cpf" name="cpf" maxlength="11" placeholder="11111111111">
         <label for="cpf">CPF (sem hífen)</label>
+        <div class="invalid-feedback">
+          Por favor preencha esse campo.
+        </div>
       </div>
       <div class="form-floating" style="margin: 1rem 0;">
-        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+        <input required type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
         <label for="email">Endereço de email</label>
+        <div class="invalid-feedback">
+          Por favor preencha esse campo.
+        </div>
       </div>
-      <div class="form-floating"  style="margin: 1rem 0;">
-        <input type="password" class="form-control" id="floatingPassword" name="senha" placeholder="Password">
-        <label for="floatingPassword">Senha</label>
+      <div class="form-floating" style="margin: 1rem 0;">
+        <input required minlength="4" type="password" class="form-control" id="senha" name="senha"
+          placeholder="Password">
+        <label for="senha">Senha</label>
+        <div class="invalid-feedback">
+          Por favor preencha esse campo.
+        </div>
+        <div id="senha-invalida" style="display: none;">
+          <div class="alert alert-danger">
+            A senha deve conter no mínimo 4 caracteres.
+          </div>
+        </div>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Cadastrar</button>
+      <button class="w-100 btn btn-lg btn-primary btn-submit" type="button">Cadastrar</button>
     </form>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="me-auto">Erro ao logar!</strong>
+          <small>Agora</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body text-bg-danger ">
+          <div class="alert alert-req alert-danger" role="alert">
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
   <?php
   include("../include/rodape.php");
   ?>
+  <script src="./javascript/validaFormCadastro.js"></script>
